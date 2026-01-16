@@ -72,13 +72,22 @@ a:hover{ text-decoration:underline; }
 }
 
 .aboutPhotos{
-  display:flex;
-  gap:10px;
+  display:grid;
+  grid-template-columns: 140px 1fr;
+  gap:12px;
 }
 
-.aboutPhotos img{
+.aboutPhotoSmall{
+  width:140px;
+  height:140px;
+  border-radius:14px;
+  object-fit:cover;
+  border:1px solid var(--border);
+}
+
+.aboutPhotoFill{
   width:100%;
-  max-width:140px;
+  height:140px; /* matches small photo height */
   border-radius:14px;
   object-fit:cover;
   border:1px solid var(--border);
