@@ -31,21 +31,28 @@ a:hover{ text-decoration:underline; }
   padding: 32px 0 56px;
 }
 
+/* NAV */
 .nav{
-  display:flex; align-items:center; justify-content:space-between;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
   gap:16px;
   padding: 12px 0 24px;
+  flex-wrap:wrap;              /* prevents “disappearing” items on narrow widths */
 }
 .brand{
   font-weight:700;
   letter-spacing:.2px;
 }
 .navlinks{
-  display:flex; gap:14px; flex-wrap:wrap;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
   color: var(--muted);
   font-size: 14px;
 }
 
+/* HERO */
 .hero{
   display:grid;
   grid-template-columns: 1.3fr .7fr;
@@ -64,46 +71,10 @@ a:hover{ text-decoration:underline; }
   box-shadow: var(--shadow);
 }
 
-.aboutGrid{
-  display:grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap:16px;
-  align-items:start;
+.heroMain{
+  padding: 26px;
+  min-width: 0; /* critical for preventing overflow clipping inside grid/flex */
 }
-
-.aboutPhotos{
-  display:flex;
-  gap:12px;
-  width:100%;
-}
-
-.aboutHeadshot{
-  width:140px;
-  height:140px;
-  flex-shrink:0;          /* THIS keeps it from resizing */
-  border-radius:14px;
-  object-fit:cover;
-  border:1px solid var(--border);
-}
-
-.aboutBaking{
-  height:140px;           /* same height */
-  flex:1;                 /* THIS makes it fill remaining width */
-  border-radius:14px;
-  object-fit:cover;
-  border:1px solid var(--border);
-}
-
-@media (max-width: 860px){
-  .aboutGrid{
-    grid-template-columns: 1fr;
-  }
-  .aboutPhotos{
-    margin-top:12px;
-  }
-}
-
-.heroMain{ padding: 26px; }
 .kicker{
   display:inline-flex; align-items:center; gap:10px;
   color: var(--muted);
@@ -127,7 +98,9 @@ h1{
 }
 
 .ctaRow{
-  display:flex; gap:12px; flex-wrap:wrap;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
   margin-top: 14px;
 }
 .btn{
@@ -139,24 +112,23 @@ h1{
   color: var(--text);
   font-weight: 600;
   font-size: 14px;
+  max-width:100%;
 }
-
-/* Primary button: dusty mauve */
 .btnPrimary{
   border-color: rgba(139, 90, 106, 0.38);
   background: rgba(139, 90, 106, 0.14);
   color: var(--text);
 }
-
-/* Optional: if you add a secondary button later */
 .btnSecondary{
   border-color: rgba(184, 137, 106, 0.40);
   background: rgba(184, 137, 106, 0.16);
 }
-
 .btn:hover{ text-decoration:none; filter: brightness(1.03); }
 
-.heroSide{ padding: 22px; }
+.heroSide{
+  padding: 22px;
+  min-width:0; /* prevents squeeze issues */
+}
 .smallTitle{
   font-size: 13px;
   letter-spacing: .12em;
@@ -176,13 +148,14 @@ h1{
   background: rgba(255, 250, 244, 0.7);
 }
 
-.section{
-  margin-top: 26px;
-}
+/* SECTIONS */
+.section{ margin-top: 26px; }
+
 .sectionHeader{
   display:flex; align-items:end; justify-content:space-between;
   gap:12px;
   margin-bottom: 10px;
+  flex-wrap:wrap;
 }
 .sectionHeader h2{
   margin: 0;
@@ -194,71 +167,50 @@ h1{
   font-size: 14px;
 }
 
-.grid{
+/* ABOUT */
+.aboutGrid{
   display:grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 16px;
-}
-.col6{ grid-column: span 6; }
-.col12{ grid-column: span 12; }
-@media (max-width: 860px){
-  .col6{ grid-column: span 12; }
-}
-
-.project{
-  padding: 16px;
-  display:grid;
-  grid-template-columns: 160px 1fr;
-  gap: 14px;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap:16px;
   align-items:start;
+  min-width:0;
 }
-@media (max-width: 520px){
-  .project{ grid-template-columns: 1fr; }
-}
-.thumb{
-  width:100%;
-  height:110px;
-  object-fit: cover;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: rgba(47, 38, 34, 0.03);
-}
-.projTitle{
-  margin: 0 0 4px;
-  font-weight: 700;
-}
-.projMeta{
-  color: var(--muted);
-  font-size: 13px;
-  margin: 0 0 8px;
-}
-.projBullets{
-  margin: 0;
-  padding-left: 18px;
-  color: var(--muted);
-  font-size: 14px;
-}
-.tags{
-  display:flex; flex-wrap:wrap; gap:8px;
-  margin-top: 10px;
-}
-.tag{
-  font-size: 12px;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  background: rgba(255, 250, 244, 0.7);
-  padding: 6px 8px;
-  border-radius: 999px;
+@media (max-width: 860px){
+  .aboutGrid{ grid-template-columns: 1fr; }
 }
 
-.footer{
-  margin-top: 32px;
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 13px;
+.aboutPhotos{
   display:flex;
-  justify-content:space-between;
-  gap: 12px;
-  flex-wrap:wrap;
+  gap:12px;
+  width:100%;
+  min-width:0; /* prevents flex overflow */
 }
+
+/* Fixed-size headshot */
+.aboutHeadshot{
+  width:160px;            /* adjust up/down if you want bigger/smaller */
+  height:160px;
+  flex:0 0 auto;
+  border-radius:14px;
+  object-fit:cover;
+  border:1px solid var(--border);
+}
+
+/* Baking photo fills remaining width, same height */
+.aboutBaking{
+  height:160px;
+  flex:1 1 auto;
+  width:0;                /* KEY: allows it to actually fill remaining space */
+  min-width:0;            /* KEY: prevents overflow/cropping oddness */
+  border-radius:14px;
+  object-fit:cover;
+  border:1px solid var(--border);
+}
+
+/* On smaller screens, stack them */
+@media (max-width: 520px){
+  .aboutPhotos{
+    flex-direction:column;
+  }
+  .aboutHeadshot,
+  .aboutBaking
