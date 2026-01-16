@@ -72,22 +72,23 @@ a:hover{ text-decoration:underline; }
 }
 
 .aboutPhotos{
-  display:grid;
-  grid-template-columns: 140px 1fr;
+  display:flex;
   gap:12px;
+  width:100%;
 }
 
-.aboutPhotoSmall{
+.aboutHeadshot{
   width:140px;
   height:140px;
+  flex-shrink:0;          /* THIS keeps it from resizing */
   border-radius:14px;
   object-fit:cover;
   border:1px solid var(--border);
 }
 
-.aboutPhotoFill{
-  width:100%;
-  height:140px; /* matches small photo height */
+.aboutBaking{
+  height:140px;           /* same height */
+  flex:1;                 /* THIS makes it fill remaining width */
   border-radius:14px;
   object-fit:cover;
   border:1px solid var(--border);
