@@ -126,19 +126,17 @@ a:hover{ text-decoration:underline; }
 
 .aboutPhotoCol{
   display:flex;
-  flex-direction:column;
   gap:12px;
   min-width:0;
 }
 
 .aboutHeadshot,
 .aboutBaking{
-  width:100%;
-  height:180px;         /* vertical feel */
+  width:50%;
+  height:180px;
   border-radius:14px;
   object-fit:cover;
   border:1px solid var(--border);
-  background: rgba(47, 38, 34, 0.03);
 }
 
 /* Mobile: stack */
