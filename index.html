@@ -60,7 +60,7 @@
         <p>Selected website and content work</p>
       </div>
 
-      <div class="grid">
+     <!-- <div class="grid">
         <div class="card project col6">
           <img class="thumb" src="assets/project-bunsout.jpg" alt="Screenshot of BunsOut Bakery website" />
           <div>
@@ -76,8 +76,8 @@
               <span class="tag">Analytics</span>
               <span class="tag">Content</span>
             </div>
-            <!-- Optional live link -->
-            <!-- <p style="margin:10px 0 0;"><a href="https://your-live-site.com" target="_blank" rel="noopener">Live site</a></p> -->
+             <!-- Optional live link
+            <!-- <p style="margin:10px 0 0;"><a href="https://your-live-site.com" target="_blank" rel="noopener">Live site</a></p>
           </div>
         </div>
 
@@ -102,9 +102,66 @@
           </div>
         </div>
       </div>
+    </div> -->
+
+    <div class="section" id="projects">
+      <div class="sectionHeader">
+        <h2>Projects</h2>
+        <p>Swipe for more</p>
+      </div>
+    
+      <div class="carousel" data-carousel="projects">
+        <button class="carouselBtn prev" aria-label="Previous">‹</button>
+    
+        <div class="carouselViewport">
+          <div class="carouselTrack">
+            <!-- Project 1 -->
+            <article class="card projectCard">
+              <img class="thumb" src="assets/project-roofing.jpg" alt="Roofing Company Website screenshot">
+              <h3>Roofing Company Website</h3>
+              <p>Wix, HTML, JavaScript • Content workflows • Analytics</p>
+              <a class="btn btnPrimary" href="https://abolton823.wixsite.com/mysite" target="_blank" rel="noopener">View</a>
+            </article>
+    
+            <!-- Project 2 -->
+            <article class="card projectCard">
+              <img class="thumb" src="assets/project-bjj.jpg" alt="BJJ Nonprofit website screenshot">
+              <h3>BJJ Nonprofit Website</h3>
+              <p>Squarespace, JavaScript • Updates • Engagement metrics</p>
+              <a class="btn" href="https://YOUR-LINK" target="_blank" rel="noopener">View</a>
+            </article>
+    
+            <!-- Project 3 -->
+            <article class="card projectCard">
+              <img class="thumb" src="assets/project-bunsout.jpg" alt="BunsOut Menu screenshot">
+              <h3>BunsOut Bakery Content Creation</h3>
+              <p>Wix/Canva • Engagement metrics • Analytics</p>
+              <a class="btn" href="#" target="_blank" rel="noopener">Details</a>
+            </article>
+    
+            <!-- Project 4 -->
+            <article class="card projectCard">
+              <img class="thumb" src="assets/project-4.jpg" alt="School Project screenshot">
+              <h3>Interactive Real Estate Website</h3>
+              <p>HTML/PHP • JavaScript • SQL</p>
+              <a class="btn" href="#" target="_blank" rel="noopener">Details</a>
+            </article>
+    
+            <!-- Project 5 -->
+            <article class="card projectCard">
+              <img class="thumb" src="assets/project-5.jpg" alt="School Project screenshot">
+              <h3>IDK WHAT TO ADD HERE</h3>
+              <p>• What you built • Outcome</p>
+              <a class="btn" href="#" target="_blank" rel="noopener">Details</a>
+            </article>
+          </div>
+        </div>
+    
+        <button class="carouselBtn next" aria-label="Next">›</button>
+      </div>
     </div>
 
-    <div class="section" id="skills">
+    <!-- <div class="section" id="skills">
       <div class="sectionHeader">
         <h2>Skills</h2>
         <p>Tools and strengths</p>
@@ -138,6 +195,44 @@
             Windows, macOS • Visual Studio Code • Google Workspace / Microsoft Office
           </p>
         </div>
+      </div>
+    </div> -->
+
+    <div class="section" id="skills">
+      <div class="sectionHeader">
+        <h2>Skills</h2>
+        <p>Swipe for more</p>
+      </div>
+    
+      <div class="carousel" data-carousel="skills">
+        <button class="carouselBtn prev" aria-label="Previous">‹</button>
+    
+        <div class="carouselViewport">
+          <div class="carouselTrack">
+            <div class="card skillCard">
+              <h3>Web</h3>
+              <p>HTML, CSS, JavaScript</p>
+            </div>
+            <div class="card skillCard">
+              <h3>CMS</h3>
+              <p>Wix, Squarespace, WordPress</p>
+            </div>
+            <div class="card skillCard">
+              <h3>Data</h3>
+              <p>SQL, Analytics, Reporting</p>
+            </div>
+            <div class="card skillCard">
+              <h3>Languages</h3>
+              <p>Java, Python, PHP</p>
+            </div>
+            <div class="card skillCard">
+              <h3>Tools</h3>
+              <p>GitHub, VS Code, Google Suite</p>
+            </div>
+          </div>
+        </div>
+    
+        <button class="carouselBtn next" aria-label="Next">›</button>
       </div>
     </div>
 
@@ -192,5 +287,124 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+  <script>
+    (function(){
+      function initCarousel(root){
+        const viewport = root.querySelector('.carouselViewport');
+        const track = root.querySelector('.carouselTrack');
+        const prevBtn = root.querySelector('.carouselBtn.prev');
+        const nextBtn = root.querySelector('.carouselBtn.next');
+    
+        let index = 0;
+        let itemsPerView = 2;
+    
+        function getCards(){
+          return Array.from(track.children);
+        }
+    
+        function updateItemsPerView(){
+          itemsPerView = window.matchMedia('(max-width: 640px)').matches ? 1 : 2;
+        }
+    
+        function maxIndex(){
+          const total = getCards().length;
+          return Math.max(0, Math.ceil(total / itemsPerView) - 1);
+        }
+    
+        function pageWidth(){
+          return viewport.clientWidth;
+        }
+    
+        function clampIndex(){
+          index = Math.max(0, Math.min(index, maxIndex()));
+        }
+    
+        function render(animate=true){
+          clampIndex();
+          if(!animate) track.style.transition = 'none';
+          const x = -(index * pageWidth());
+          track.style.transform = `translateX(${x}px)`;
+          if(!animate){
+            // force reflow then restore transition
+            track.offsetHeight;
+            track.style.transition = '';
+          }
+          if(prevBtn) prevBtn.disabled = index === 0;
+          if(nextBtn) nextBtn.disabled = index === maxIndex();
+        }
+    
+        function next(){
+          index += 1;
+          render(true);
+        }
+    
+        function prev(){
+          index -= 1;
+          render(true);
+        }
+    
+        if(nextBtn) nextBtn.addEventListener('click', next);
+        if(prevBtn) prevBtn.addEventListener('click', prev);
+    
+        // Swipe / drag
+        let isDown = false;
+        let startX = 0;
+        let startTranslate = 0;
+    
+        function currentTranslate(){
+          const m = track.style.transform.match(/translateX\((-?\d+(\.\d+)?)px\)/);
+          return m ? parseFloat(m[1]) : 0;
+        }
+    
+        function onDown(clientX){
+          isDown = true;
+          startX = clientX;
+          startTranslate = currentTranslate();
+          track.style.transition = 'none';
+        }
+    
+        function onMove(clientX){
+          if(!isDown) return;
+          const dx = clientX - startX;
+          track.style.transform = `translateX(${startTranslate + dx}px)`;
+        }
+    
+        function onUp(clientX){
+          if(!isDown) return;
+          isDown = false;
+          const dx = clientX - startX;
+    
+          // snap threshold: 15% of viewport
+          const threshold = pageWidth() * 0.15;
+          if(dx < -threshold) index += 1;
+          else if(dx > threshold) index -= 1;
+    
+          track.style.transition = '';
+          render(true);
+        }
+    
+        // Pointer events (covers mouse + touch)
+        viewport.addEventListener('pointerdown', (e) => {
+          viewport.setPointerCapture(e.pointerId);
+          onDown(e.clientX);
+        });
+        viewport.addEventListener('pointermove', (e) => onMove(e.clientX));
+        viewport.addEventListener('pointerup', (e) => onUp(e.clientX));
+        viewport.addEventListener('pointercancel', (e) => onUp(e.clientX));
+    
+        // Resize handling
+        function onResize(){
+          updateItemsPerView();
+          render(false);
+        }
+        window.addEventListener('resize', onResize);
+    
+        updateItemsPerView();
+        render(false);
+      }
+    
+      document.querySelectorAll('.carousel').forEach(initCarousel);
+    })();
+    </script>
 </body>
 </html>
