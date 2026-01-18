@@ -20,7 +20,13 @@
       </div>
     </div>
 
-    <div class="hero">
+    <h1 class="nameLine">
+      <span id="typedName" aria-label="Hi, I'm Alexis Owens"></span><span class="caret" aria-hidden="true"></span>
+    </h1>
+
+    <div class="introSpacer"></div>
+
+    <div class="hero reveal" id="hero">
       <div class="card heroMain">
         <div class="kicker"><span class="dot"></span> Digital Services • Website Content • Analytics</div>
         <h1>Bridging technology and content to build real-world accessibility.</h1>
@@ -297,6 +303,25 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
+  <script>
+    (function(){
+      const el = document.getElementById("typedName");
+      if(!el) return;
+  
+      const text = "Alexis Owens";
+      const speed = 60; // ms per character
+      let i = 0;
+  
+      function tick(){
+        el.textContent = text.slice(0, i);
+        i++;
+        if(i <= text.length) setTimeout(tick, speed);
+      }
+      tick();
+    })();
+  </script>
+
   <script>
     (function(){
       function initCarousel(root){
@@ -415,6 +440,24 @@
     
       document.querySelectorAll('.carousel').forEach(initCarousel);
     })();
+    </script>
+
+    <script>
+      (function(){
+        const hero = document.querySelector("#hero.reveal");
+        if(!hero) return;
+    
+        const obs = new IntersectionObserver((entries) => {
+          for (const entry of entries){
+            if(entry.isIntersecting){
+              entry.target.classList.add("is-visible");
+              obs.unobserve(entry.target);
+            }
+          }
+        }, { threshold: 0.15 });
+    
+        obs.observe(hero);
+      })();
     </script>
 </body>
 </html>
