@@ -11,7 +11,7 @@
   <div class="container">
 
     <div class="nav">
-      <div class="brand">Alexis Owens</div>
+      <!-- <div class="brand">Alexis Owens</div> -->
       <div class="navlinks">
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
@@ -20,16 +20,18 @@
       </div>
     </div>
 
-    <h1 class="nameLine">
+    <section class="intro">
+      <h1 class="nameLine">
       <span id="typedName" aria-label="Hi, I'm Alexis Owens"></span><span class="caret" aria-hidden="true"></span>
     </h1>
 
-    <div class="introSpacer"></div>
+    <p class="heroHint">
+      It's a pleasure to meet you.
+    </p>
 
-    <div class="hero reveal" id="hero">
-      <div class="card heroMain">
-        <div class="kicker"><span class="dot"></span> Digital Services • Website Content • Analytics</div>
-        <h1>Bridging technology and content to build real-world accessibility.</h1>
+    <div class="card heroMain reveal" id="heroCard">
+      <div class="kicker"><span class="dot"></span> Digital Services • Website Content • Analytics</div>
+        <h1>Here to bridge technology and content to build real-world accessibility.</h1>
         <p class="lead">
             I’m a Computer Science graduate with experience in web technologies, analytics, and system 
             support through small business ownership and freelance work. I enjoy solving complex problems, improving 
@@ -59,56 +61,7 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="section" id="projects">
-      <div class="sectionHeader">
-        <h2>Projects</h2>
-        <p>Selected website and content work</p>
-      </div>
-
-    <div class="grid">
-        <div class="card project col6">
-          <img class="thumb" src="assets/project-bunsout.jpg" alt="Screenshot of BunsOut Bakery website" />
-          <div>
-            <p class="projTitle">BunsOut Bakery LLC — Website & Digital Content</p>
-            <p class="projMeta">Owner / Digital Content Manager • 2022–Present</p>
-            <ul class="projBullets">
-              <li>Managed site updates and content publishing across digital platforms.</li>
-              <li>Used analytics to track engagement and improve content performance.</li>
-              <li>Improved usability by refining navigation, layout, and mobile readability.</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">Wix / Squarespace (edit)</span>
-              <span class="tag">Analytics</span>
-              <span class="tag">Content</span>
-            </div>
-             <!-- Optional live link
-            <!-- <p style="margin:10px 0 0;"><a href="https://your-live-site.com" target="_blank" rel="noopener">Live site</a></p>
-          </div>
-        </div>
-
-        <div class="card project col6">
-          <img class="thumb" src="assets/project-roofing.jpg" alt="Screenshot of Roofing Company website project" />
-          <div>
-            <p class="projTitle">Roofing Company Website — Freelance</p>
-            <p class="projMeta">Web Designer / Administrator • Jan 2024</p>
-            <ul class="projBullets">
-              <li>Built and maintained pages, updated images, and structured content for clarity.</li>
-              <li>Supported content workflows and basic analytics monitoring post-launch.</li>
-              <li>Coordinated changes with stakeholders to meet timeline and requirements.</li>
-            </ul>
-            <div class="tags">
-              <span class="tag">Wix</span>
-              <span class="tag">HTML/JS</span>
-              <span class="tag">Content workflows</span>
-            </div>
-            <p style="margin:10px 0 0;">
-              <a href="https://abolton823.wixsite.com/mysite" target="_blank" rel="noopener">Live site</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div> -->
+  </section>
 
     <div class="section" id="projects">
       <div class="sectionHeader">
@@ -304,23 +257,32 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
-  <script>
-    (function(){
-      const el = document.getElementById("typedName");
-      if(!el) return;
-  
-      const text = "Alexis Owens";
-      const speed = 60; // ms per character
-      let i = 0;
-  
-      function tick(){
-        el.textContent = text.slice(0, i);
-        i++;
-        if(i <= text.length) setTimeout(tick, speed);
+<script>
+  (function(){
+    const el = document.getElementById("typedName");
+    const hero = document.getElementById("heroCard"); // hero card id
+    if(!el) return;
+
+    const text = "Hello, I'm Alexis Owens.";
+    const speed = 60; // ms per character
+    let i = 0;
+
+    // make sure hero starts hidden until typing finishes
+    if(hero) hero.classList.remove("is-visible");
+
+    function tick(){
+      el.textContent = text.slice(0, i);
+      i++;
+      if(i <= text.length){
+        setTimeout(tick, speed);
+      } else {
+        if(hero) hero.classList.add("is-visible"); // reveal hero now
       }
-      tick();
-    })();
-  </script>
+    }
+
+    tick();
+  })();
+</script>
 
   <script>
     (function(){
@@ -442,22 +404,5 @@
     })();
     </script>
 
-    <script>
-      (function(){
-        const hero = document.querySelector("#hero.reveal");
-        if(!hero) return;
-    
-        const obs = new IntersectionObserver((entries) => {
-          for (const entry of entries){
-            if(entry.isIntersecting){
-              entry.target.classList.add("is-visible");
-              obs.unobserve(entry.target);
-            }
-          }
-        }, { threshold: 0.15 });
-    
-        obs.observe(hero);
-      })();
-    </script>
 </body>
 </html>
