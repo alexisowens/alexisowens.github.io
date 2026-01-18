@@ -22,12 +22,14 @@
 
     <section class="intro">
       <h1 class="nameLine">
-      <span id="typedName" aria-label="Hi, I'm Alexis Owens"></span><span class="caret" aria-hidden="true"></span>
-    </h1>
+        <span id="typedName" aria-label="Hi, I'm Alexis Owens"></span>
+        <span class="caret" aria-hidden="true"></span>
+      </h1>
 
     <p class="heroHint">
-      It's a pleasure to meet you.
+      <span id="typedSub"></span>
     </p>
+    </section>
 
     <div class="card heroMain reveal" id="heroCard">
       <div class="kicker"><span class="dot"></span> Digital Services • Website Content • Analytics</div>
@@ -253,37 +255,55 @@
 
   </div>
 
+<!-- Script to get year -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
-<script>
-  (function(){
-    const el = document.getElementById("typedName");
-    const hero = document.getElementById("heroCard"); // hero card id
-    if(!el) return;
+<!-- Script to type out name -->
+  <script>
+    (function(){
+      const nameEl = document.getElementById("typedName");
+      const subEl  = document.getElementById("typedSub");
+      const hero   = document.getElementById("heroCard");
 
-    const text = "Hello, I'm Alexis Owens.";
-    const speed = 60; // ms per character
-    let i = 0;
+      if(!nameEl || !subEl) return;
 
-    // make sure hero starts hidden until typing finishes
-    if(hero) hero.classList.remove("is-visible");
+      const nameText = "Hi, I'm Alexis Owens";
+      const subText  = "It's a pleasure to meet you.";
+      const speed = 60;
 
-    function tick(){
-      el.textContent = text.slice(0, i);
-      i++;
-      if(i <= text.length){
-        setTimeout(tick, speed);
-      } else {
-        if(hero) hero.classList.add("is-visible"); // reveal hero now
+      let i = 0;
+
+      // make sure hero starts hidden
+      if(hero) hero.classList.remove("is-visible");
+
+      function typeName(){
+        nameEl.textContent = nameText.slice(0, i);
+        i++;
+        if(i <= nameText.length){
+          setTimeout(typeName, speed);
+        } else {
+          i = 0;
+          setTimeout(typeSub, 300); // small pause between lines
+        }
       }
-    }
 
-    tick();
-  })();
-</script>
+      function typeSub(){
+        subEl.textContent = subText.slice(0, i);
+        i++;
+        if(i <= subText.length){
+          setTimeout(typeSub, speed);
+        } else {
+          if(hero) hero.classList.add("is-visible");
+        }
+      }
 
+      typeName();
+    })();
+  </script>
+
+<!-- Script for Carousel-->
   <script>
     (function(){
       function initCarousel(root){

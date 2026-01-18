@@ -1,5 +1,5 @@
 :root{
-  --bg:#f2e7dc;                 
+  --bg: #f5c1c5;                 
   --card:#fffaf4;              
   --text:#2f2622;               
   --muted:#6f5f58;              
@@ -51,7 +51,7 @@ a:hover{ text-decoration:underline; }
 
 .heroHint{
   margin: 6px 0 14px;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
 }
 
