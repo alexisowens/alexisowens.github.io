@@ -166,7 +166,6 @@ a:hover{ text-decoration:underline; }
 .skillCard p{ margin:0; color: var(--muted); }
 
 /* thumbs */
-/* thumbs */
 .projectCard .thumb{
   width:100%;
   border-radius:14px;
@@ -209,14 +208,14 @@ a:hover{ text-decoration:underline; }
 /* Project card: vertical image + side text */
 .projectRow{
   display:grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 160px 1fr;
   gap:16px;
   align-items:start;
 }
 
 .verticalThumb{
   width:100%;
-  height:260px;          /* vertical feel */
+  height:300px;          /* vertical feel */
   object-fit:cover;
   border-radius:14px;
   border:1px solid var(--border);
